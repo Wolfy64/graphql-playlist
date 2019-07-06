@@ -65,7 +65,7 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         // code to get data fom db / other source
         return _.find(books, { id: args.id })
-      })
+      }
     },
     author: {
       type: AuthorType,
@@ -73,8 +73,20 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         return _.find(authors, { id: args.id })
       }
+    },
+    books: {
+      type: new GraphQLList(BookType),
+      resolve(parents, args) {
+        return books
+      }
+    },
+    authors: {
+      type: new GraphQLList(AuthorType),
+      resolve(parent, args) {
+        return authors
+      }
     }
-  }
+  })
 })
 
 module.exports = new GraphQLSchema({
