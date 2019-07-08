@@ -1,5 +1,6 @@
 import gql from 'graphql-tag'
 
+// QUERIES
 const GET_BOOKS = gql`
   {
     books {
@@ -17,4 +18,14 @@ const GET_AUTHORS = gql`
   }
 `
 
-export { GET_BOOKS, GET_AUTHORS }
+// MUTATIONS
+const ADD_BOOK = gql`
+  mutation {
+    addBook(name: "", genre: "", id: "") {
+      name
+      id
+    }
+  }
+`
+
+export { GET_BOOKS, GET_AUTHORS, ADD_BOOK }

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { graphql } from 'react-apollo'
+import { graphql, compose } from 'react-apollo'
 
-import { GET_AUTHORS } from '../queries/queries'
+import { GET_AUTHORS, ADD_BOOK } from '../queries/queries'
 
-function AddBook({ data }) {
+function AddBook({ getAuthors, addBook }) {
   const [name, setName] = useState('')
   const [genre, setGenre] = useState('')
   const [authorId, setAuthorId] = useState('')
-  const { loading, authors } = data
+  const { loading, authors } = getAuthors
 
   if (loading) return 'Loading authors...'
 
@@ -20,6 +20,7 @@ function AddBook({ data }) {
   const submit = e => {
     e.preventDefault()
     console.log('submit', { name, genre, authorId })
+    addBook(name, genre, authorId)
   }
 
   return (
@@ -52,4 +53,7 @@ function AddBook({ data }) {
   )
 }
 
-export default graphql(GET_AUTHORS)(AddBook)
+export default compose(
+  graphql(GET_AUTHORS, { name: 'getAuthors' }),
+  graphql(ADD_BOOK, { name: 'addBook' })
+)(AddBook)
