@@ -11,13 +11,14 @@ const GET_BOOKS = gql`
   }
 `
 
-function BookList(props) {
-  console.log(props)
+function BookList({ data }) {
+  const { loading, books } = data
+  if (loading) return 'Loading books..'
+
+  const booksList = books.map(e => <li key={e.id}>{e.name}</li>)
   return (
     <div>
-      <ul id="book-list">
-        <li>Book name</li>
-      </ul>
+      <ul id="book-list">{booksList}</ul>
     </div>
   )
 }
