@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { graphql, compose } from 'react-apollo'
 
-import { GET_AUTHORS, ADD_BOOK } from '../queries/queries'
+import { GET_BOOKS, GET_AUTHORS, ADD_BOOK } from '../queries/queries'
 
 function AddBook({ getAuthors, addBook }) {
   const [name, setName] = useState('')
@@ -19,8 +19,10 @@ function AddBook({ getAuthors, addBook }) {
 
   const submit = e => {
     e.preventDefault()
-    console.log('submit', { name, genre, authorId })
-    addBook({ variables: { name, genre, authorId } })
+    addBook({
+      variables: { name, genre, authorId },
+      refetchQueries: [{ query: GET_BOOKS }]
+    })
   }
 
   return (
