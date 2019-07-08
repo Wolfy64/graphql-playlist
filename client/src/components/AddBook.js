@@ -50,7 +50,7 @@ function AddBook({ getAuthors, addBook }) {
           {authorsList}
         </select>
       </div>
-      <button>Add Book</button>
+      <button>+</button>
     </form>
   )
 }

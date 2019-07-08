@@ -21,8 +21,7 @@ const Details = ({ book }) => {
 }
 
 function BookDetails({ bookId, data }) {
-  const { loading, book } = data
-  if (loading) return 'Loading details..'
+  const { book } = data
 
   return (
     <div id="book-details">
