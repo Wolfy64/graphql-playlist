@@ -1,17 +1,9 @@
 import React from 'react'
-import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 
-const GET_AUTHORS = gql`
-  {
-    authors {
-      name
-      id
-    }
-  }
-`
+import { GET_AUTHORS } from '../queries/queries'
+
 function AddBook({ data }) {
-  console.log(data)
   const { loading, authors } = data
   if (loading) return 'Loading authors...'
 
