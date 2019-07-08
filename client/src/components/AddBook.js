@@ -20,7 +20,7 @@ function AddBook({ getAuthors, addBook }) {
   const submit = e => {
     e.preventDefault()
     console.log('submit', { name, genre, authorId })
-    addBook(name, genre, authorId)
+    addBook({ variables: { name, genre, authorId } })
   }
 
   return (
